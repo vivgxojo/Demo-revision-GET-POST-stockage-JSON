@@ -28,4 +28,19 @@ function afficherPersonne(nom, don){
  */
 
 const personne = JSON.parse(localStorage.getItem('personne'));
-afficherPersonne(personne.nom, personne.don);
+//afficherPersonne(personne.nom, personne.don);
+
+// Correction du défi
+let liste = JSON.parse(localStorage.getItem('list')); // Récupérer la liste sauvegardée
+if(liste === null){
+    liste = [] // Si c'est la première fois la liste est null, il faut l'initialiser
+}
+liste.push(personne); // Ajouter la nouvelle personne dans la liste
+localStorage.setItem('list', JSON.stringify(liste)); // Sauvegarder la liste
+/*for(let i = 0; i < liste.length; i++){
+    afficherPersonne(liste[i].nom, liste[i].don); // Afficher la liste
+}*/
+for(pers of liste){
+    afficherPersonne(pers.nom, pers.don); // Afficher la liste
+}
+
